@@ -12,6 +12,8 @@ function App() {
 
   const [selectedList, setSelectedList] = useState(null);
 
+  const [mainBoxClassName, setMainBoxClassName] = useState("");
+
   const [selectionData, setSelectionData] = useState([
     {
       label: "Learner Activation",
@@ -108,10 +110,11 @@ function App() {
 
   return (
     <div className="min-h-screen p-4 text-black flex justify-end">
-      <div className={`border rounded-md p-2 w-fit flex flex-col items-end transition-box h-fit ${flag ? 'fade-box' : 'fade-box-reverse'}`}>
+      <div className={`border rounded-md p-2 flex flex-col items-end transition-box h-[58px] w-[115px] ${mainBoxClassName}`}>
         <button
           onClick={() => {
             setFlag(flag ? false : true);
+            setMainBoxClassName(flag ? 'fade-box-reverse' : 'fade-box');
           }}
           className="bg-blue-400 p-2 rounded-sm">
           {flag ? "View Less" : "View More"}
@@ -156,6 +159,7 @@ function App() {
                             className="cursor-pointer"
                               onClick={() => {
                                 setFlag(true);
+                                setMainBoxClassName('fade-box');
                                 setSelectedList(item.id);
                               }}
                             >{item.label}</p>
